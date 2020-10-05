@@ -10,8 +10,8 @@ import SearchBar from "./Components/SearchItems/SearchBar";
 class App extends Component {
   state = {
     search: "",
-    printType: null,
-    bookType: null,
+    printType: 'all',
+    bookType: 'partial',
     results: {},
   };
 
@@ -27,14 +27,22 @@ class App extends Component {
       printType: printType,
       bookType: bookType,
     });
+    this.getApiRequest(search,bookType,printType)
   };
 
 
 
+  getApiRequest = (search, bookType, printType) => {
+    let filterBookType = `&filter=${bookType}`
+    let filterPrintType = `&printType=${printType}`
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}${filterBookType}`)
+    .then(res => res.json())
+    .then(data => console.log('heres your data', data))
+  }
 
   
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     return (
       <div className="App">
         <Header />
