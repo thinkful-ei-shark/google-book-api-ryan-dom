@@ -6,7 +6,6 @@ class SearchBar extends Component {
     render() { 
         return ( 
             <div className='search-bar'>
-                <p>This is the search bar</p>
                 {this.props.children}
             </div>
          );

@@ -5,7 +5,7 @@ class Header extends Component {
     render() { 
         return (
           <header className="header">
-            <h1>This is the Header, Google Book Search</h1>
+            <h1>Google Book Search</h1>
           </header>
         );
     }
