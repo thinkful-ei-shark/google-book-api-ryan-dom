@@ -26,3 +26,11 @@
     border: 2px solid red;
       margin: 10px;
 }
+
+.bookResult {
+  border: 2px solid green;
+}
+
+li {
+  list-style: none;
+}

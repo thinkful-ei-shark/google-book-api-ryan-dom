@@ -12,7 +12,7 @@ class App extends Component {
     search: "",
     printType: 'all',
     bookType: 'partial',
-    results: {},
+    results: [],
   };
 
   handleSearchClicked = (e) => {
@@ -35,14 +35,22 @@ class App extends Component {
   getApiRequest = (search, bookType, printType) => {
     let filterBookType = `&filter=${bookType}`
     let filterPrintType = `&printType=${printType}`
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}${filterBookType}`)
-    .then(res => res.json())
-    .then(data => console.log('heres your data', data))
+    fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${search}${filterBookType}${filterPrintType}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          results: data.items,
+        });
+      })
+      .catch(error => console.log(error))
+
   }
 
   
   render() {
-    //console.log(this.state);
+    console.log(this.state.results);
     return (
       <div className="App">
         <Header />
@@ -50,7 +58,7 @@ class App extends Component {
           <Search handleSearchClicked={this.handleSearchClicked} />
         </SearchBar>
         <BookList>
-          <BookItem />
+          <BookItem results={this.state.results}/>
         </BookList>
       </div>
     );

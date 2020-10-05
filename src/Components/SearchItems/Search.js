@@ -17,6 +17,7 @@ class Search extends Component {
                 id="search-input"
                 placeholder="search here"
                 name="searchinput"
+                value="Harry Potter"
               />
               <button id="search-button">Search</button>
               <div><wrap>
