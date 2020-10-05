@@ -40,6 +40,9 @@ class App extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
+        if(data === undefined){
+          return []
+        }
         this.setState({
           results: data.items,
         });
