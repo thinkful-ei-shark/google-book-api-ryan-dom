@@ -1,48 +1,32 @@
-import React, { Children } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import PrintType from './Components/PrintType';
-// import Search from './Components/Search';
-import BookType from "./Components/BookType";
-import BookList from "./Components/BookList";
-import BookItem from "./Components/BookItem";
+import PrintType from './Components/SearchItems/PrintType';
+import Search from './Components/SearchItems/Search';
+import BookType from "./Components/SearchItems/BookType";
+import BookList from "./Components/BookResults/BookList";
+import BookItem from "./Components/BookResults/BookItem";
+import Header from "./Components/Header";
+import SearchBar from "./Components/SearchItems/SearchBar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header"><h1>This is the Header, Google Book Search</h1></header>
-      <Search>
-        <PrintType />
-      </Search>
 
-    </div>
-  );
+
+class App extends Component {
+
+  render() { 
+    return (
+      <div className="App">
+        <Header />
+        <SearchBar>
+          <Search />
+          <PrintType />
+          <BookType />
+        </SearchBar>
+        <BookList>
+          <BookItem />
+        </BookList>
+      </div>
+    );
+  }
 }
-
+ 
 export default App;
-
-
-function Search ({Children}) {
-
-
-    function doTask(name) {
-      console.log(`${name} has started`);
-      const duration = Math.floor(Math.random() * 5000);
-      setTimeout(() => {
-        console.log(`${name} has ended after ${duration} milliseconds`);
-      }, duration);
-    }
-
-    doTask("A");
-
-
-        return ( 
-            <div>
-                <form className='search-bar'>
-                    <input type='text' id='search-input' placeholder='search here'></input>
-                    <button id='search-button'>Search</button>
-                </form>
-                {Children}
-            </div>
-         );
-
-};
